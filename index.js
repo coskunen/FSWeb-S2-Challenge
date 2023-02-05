@@ -69,24 +69,26 @@ var cumleler = [
 	*/
 
 // ÖRNEĞİN ÇÖZÜMÜ:
-function cumleKur(birinci, ikinci="", ucuncu="", dorduncu="", besinci=""){
+function cumleKur(birinci="", ikinci="", ucuncu="", dorduncu="", besinci=""){
 	return birinci+ikinci+ucuncu+dorduncu+besinci;
 }
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
-
+console.log(cumleKur("Hello World!"))
 
 
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
 
-
+console.log(cumleKur("Hello" , " World!"))
 
 
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
 
-/* kodlar buraya */
+bircumle = cumleKur("Ben" , " iyi", " bir" , " yazılımcı" , " olacağım!")
+console.log(bircumle);
+
 
 
 
@@ -96,19 +98,22 @@ var bircumle;
 		cumlelereDonustur fonksiyonuna aşağıdaki yönergeleri uygulayın.
 			1. `cumleler` adındaki dizi fonksiyonun BİRİNCİ parametresi olarak alınacak.
 			2. Kelime aralarındaki ayraç(seperator) olarak kullanılmak üzere bir string değişkeni fonksiyonun İKİNCİ parametresi olarak alınacak. Ayraç parametresine "," değerini ön tanımlı yapmanız beklenmektedir.
-			3. Dizinin içindeki her dizi elemanı 1 cümle oluşturacak şekilde uc uca eklenecek, kelimelerin aralarına 3. parametrede girilen ayraç yerleştirilecek;
+			3. Dizinin içindeki her dizi elemanı 1 cümle oluşturacak şekilde uc uca eklenecek, kelimelerin aralarına 2. parametrede girilen ayraç yerleştirilecek;
 				NOT: cumlelereDonustur(cumleler, " ") fonksiyonu çağırıldığında şu dizinin oluşturacağı cümle: ["Annem","ekmek","almak","için","gitti."] => "Annem ekmek almak için gitti." şeklinde olmalıdır. 
 				💡 İPUCU: Bu çalışmada cümleleri kolay oluşturmak için .map ve .join metodunu bir arada kullanmanız gerekmektedir. 
 			4. Oluşturulan her cümle yeni bir dizi oluşturulup o dizinin içine aktarılacak. 
 			5. Oluşturulan yeni dizi döndürülecek.
 	*/
 	
-
-function cumlelereDonustur(/* kodlar buraya */ ){
-	/* kodlar buraya */
+ 
+function cumlelereDonustur(dizi,ayrac=","){
+	let yeniDizi = dizi.map((item)=>{
+		return item.join(ayrac);
+	})
+	return yeniDizi;
 }
 
-
+console.log(cumlelereDonustur(cumleler, " "));
 
 /* GÖREV 2:
 		paragrafOlustur fonksiyonuna aşağıdakileri uygulayın.
@@ -120,9 +125,12 @@ function cumlelereDonustur(/* kodlar buraya */ ){
 			6. Oluşturulan paragraf döndürülecek
 	*/
 	
-function paragrafOlustur(/* kodlar buraya */ ){
-	/* kodlar buraya */ 
+function paragrafOlustur(dizi , cb_cumleKur , cb_cumlelereDonustur ){
+	let yeniDizi = cb_cumlelereDonustur(dizi, " ");
+	let paragraf = cb_cumleKur(yeniDizi[1] , yeniDizi[3], yeniDizi[5], yeniDizi[7], yeniDizi[9]); 
+	return paragraf ;
 }
+console.log(paragrafOlustur(cumleler , cumleKur , cumlelereDonustur));
 
 
 /* 	GÖREV 3:
@@ -131,7 +139,8 @@ function paragrafOlustur(/* kodlar buraya */ ){
  */
 //3a çözümü
 /* kodlar buraya */
-
+meyveler.pop();
+meyveler.shift();
 
 
 
@@ -141,8 +150,10 @@ function paragrafOlustur(/* kodlar buraya */ ){
 */
 //3b çözümü
 /* kodlar buraya */
-
-
+let Tavşan ="🐇" 
+let Kirpi  = "🦔"
+sebzeler.unshift(Tavşan);
+sebzeler.push(Kirpi);
 
 
 
@@ -154,7 +165,8 @@ function paragrafOlustur(/* kodlar buraya */ ){
 	//3c çözümü
 /* kodlar buraya */
 
-var manav;
+var manav = [];
+manav = meyveler.concat(sebzeler);
 
 
 
@@ -170,9 +182,12 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */){
-/* kodlar buraya */
-
+function emojileriDonustur(string , nesne){
+ for(let key in nesne){
+	string = string.replaceAll(key.toUpperCase() , nesne[key])
+	string = string.replaceAll(key.toLowerCase() , nesne[key])
+ }
+return string ;
 }
 
 
